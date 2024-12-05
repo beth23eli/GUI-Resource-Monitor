@@ -1,4 +1,4 @@
-from app import App
+from GUIResourceMonitor.Classes.App import App
 
 if __name__ == "__main__":
     app = App()

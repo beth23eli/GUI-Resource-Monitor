@@ -1,0 +1,42 @@
+[
+    {
+        "timestamp": "Mon Dec  9 11:18:40 2024",
+        "cpu_usage": 2.2,
+        "memory_usage": 84.3,
+        "disk_usage": 87.4,
+        "network_usage": {
+            "bytes_sent": 134180541,
+            "bytes_received": 6298981451
+        }
+    },
+    {
+        "timestamp": "Mon Dec  9 11:18:38 2024",
+        "cpu_usage": 2.3,
+        "memory_usage": 84.3,
+        "disk_usage": 87.4,
+        "network_usage": {
+            "bytes_sent": 134180541,
+            "bytes_received": 6298981451
+        }
+    },
+    {
+        "timestamp": "Mon Dec  9 10:33:57 2024",
+        "cpu_usage": 60.1,
+        "memory_usage": 75.5,
+        "disk_usage": 87.5,
+        "network_usage": {
+            "bytes_sent": 119765647,
+            "bytes_received": 5106403455
+        }
+    },
+    {
+        "timestamp": "Mon Dec  9 10:33:53 2024",
+        "cpu_usage": 12.4,
+        "memory_usage": 75.6,
+        "disk_usage": 87.5,
+        "network_usage": {
+            "bytes_sent": 119760478,
+            "bytes_received": 5104220668
+        }
+    }
+]

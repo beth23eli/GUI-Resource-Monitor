@@ -1,4 +1,6 @@
+import json
 import psutil
+
 
 class Functionalities:
 
@@ -40,3 +42,10 @@ class Functionalities:
             "bytes_sent": network.bytes_sent,
             "bytes_received": network.bytes_recv,
         }
+    def get_resources_record(self, filename="resources_history.json"):
+        try:
+            with open(filename, 'r') as f:
+                history = json.load(f)
+                return history[0] if history else None
+        except (FileNotFoundError, json.JSONDecodeError):
+            return None

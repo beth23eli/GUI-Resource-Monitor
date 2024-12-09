@@ -1,6 +1,10 @@
 import json
 import customtkinter as ctk
 import time
+import matplotlib.pyplot as plt
+from matplotlib import style
+from matplotlib.animation import FuncAnimation
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from GUIResourceMonitor.classes.Functionalities import Functionalities
 
 ctk.set_appearance_mode("System")
@@ -16,7 +20,13 @@ class App:
         self.filename = "resources_history.json"
         self.functions = Functionalities()
 
+        self.stats_frame = None
+        self.graph_frame = None
+        self.cpu_data = []
+
         self._show_data()
+        self._setup_graph()
+        self.update_stats()
 
     def _show_data(self):
         """Displays monitor resources statistics"""
@@ -37,11 +47,6 @@ class App:
         self.network_label = ctk.CTkLabel(self.stats_frame, text="Network Usage: Sent: 0 B, Received: 0 B",
                                           font=("Arial", 16))
         self.network_label.pack(pady=5)
-
-        self.update_button = ctk.CTkButton(
-            self.stats_frame, text="Update", command=self.update_stats
-        )
-        self.update_button.pack(pady=10)
 
     def update_stats(self):
         """Updates monitor resources statistics"""
@@ -71,6 +76,7 @@ class App:
             text=f"Network Usage: Sent: {network_usage['bytes_sent']} B, "
                  f"Received: {network_usage['bytes_received']} B"
         )
+        self.root.after(1000, self.update_stats)
 
     def save_data(self, data):
         """Saves data to the json file
@@ -88,6 +94,39 @@ class App:
         history.insert(0, data)
         with open(self.filename, 'w') as f:
             json.dump(history, f, indent=4)
+
+    def _setup_graph(self):
+        """Sets the graphs frame with the canvas"""
+        self.graph_frame = ctk.CTkFrame(self.root)
+        self.graph_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
+
+        style.use('fivethirtyeight')
+        self.fig, self.ax = plt.subplots()
+        self.ax.set_title("CPU")
+        self.ax.set_ylabel("% Utilization")
+
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.graph_frame)
+        self.canvas.get_tk_widget().pack(fill="both", expand=True)
+
+        self.ani = FuncAnimation(self.fig, func=self._animate, interval=1000, cache_frame_data=False)
+
+    def _animate(self, i):
+        """Animates the graph by updating it live"""
+        record = self.functions.get_resources_record(self.filename)
+        if record:
+            cpu_usage = record["cpu_usage"]
+
+            self.cpu_data.append(cpu_usage)
+
+            #update graph
+            self.ax.clear()
+            line, = self.ax.plot(self.cpu_data, label="CPU Usage (%)")
+            self.ax.legend()
+            self.ax.set_title("CPU")
+            self.ax.set_ylabel("% Utilization")
+            self.fig.tight_layout()
+
+        return [line]
 
     def run(self):
         """

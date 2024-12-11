@@ -43,7 +43,12 @@ class Functionalities:
             "bytes_received": network.bytes_recv,
         }
 
-    def get_resources_record(self, filename="resources_history.json"):
+    def get_most_recent_resources_statistics(self, filename):
+        """
+        Gets the most recent resource statistics
+        :param filename: the path of the statistics file
+        :return: the first record of the statistics file
+        """
         try:
             with open(filename, 'r') as f:
                 history = json.load(f)
@@ -55,7 +60,7 @@ class Functionalities:
         """Saves data to the json file
 
         Args:
-            data (dict): data to save
+            :param data: the new data to be saved in the json file
             :param filename: the path of the statistics file
         """
 
@@ -68,3 +73,17 @@ class Functionalities:
         history.insert(0, data)
         with open(filename, 'w') as f:
             json.dump(history, f, indent=4)
+
+    def get_all_resources_statistics(self, filename):
+        """
+        Gets all the resources statistics from the json file
+        :param filename: the path of the statistics file
+        :return: the statistics data
+        """
+        try:
+            with open(filename, 'r') as f:
+                history = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            history = []
+
+        return history

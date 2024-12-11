@@ -19,57 +19,56 @@ class App:
         self.filename = "resources_history.json"
         self.functions = Functionalities()
 
-        self.stats_frame = None
+        self.resource_stats_frame = None
         self.graph_frame = None
-        self.data_type = "cpu_usage"
+        self.data_type = "cpu_usage" # default resource when first opening the app
         self.data_label = None
-        self.graph_data = []
+        self.graph_info = []
 
         self._show_data()
-        self._setup_graph()
-        self.update_stats()
+        self._set_graph()
+        self.update_statistics()
 
     def _show_data(self):
         """Displays monitor resources statistics"""
 
-        self.stats_frame = ctk.CTkFrame(self.root)
-        self.stats_frame.pack(fill="both", expand=True, padx=10, pady=10)
+        self.resource_stats_frame = ctk.CTkFrame(self.root)
+        self.resource_stats_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-        self.data_label = ctk.CTkLabel(self.stats_frame, text="CPU Usage: 0%", font=("Arial", 16))
+        self.data_label = ctk.CTkLabel(self.resource_stats_frame, text="CPU Usage: 0%", font=("Arial", 16))
         self.data_label.pack(pady=5)
 
-        #etichete
-        button_frame = ctk.CTkFrame(self.root)
-        button_frame.pack(pady=10)
+        buttons = ctk.CTkFrame(self.root)
+        buttons.pack(pady=10)
 
-        cpu_button = ctk.CTkButton(button_frame, text="CPU Usage", command=lambda: self._change_data("cpu_usage"))
+        cpu_button = ctk.CTkButton(buttons, text="CPU Usage", command=lambda: self._change_data("cpu_usage"))
         cpu_button.pack(side="left", padx=5)
 
-        memory_button = ctk.CTkButton(button_frame, text="Memory Usage",
+        memory_button = ctk.CTkButton(buttons, text="Memory Usage",
                                       command=lambda: self._change_data("memory_usage"))
         memory_button.pack(side="left", padx=5)
 
-        disk_button = ctk.CTkButton(button_frame, text="Disk Usage", command=lambda: self._change_data("disk_usage"))
+        disk_button = ctk.CTkButton(buttons, text="Disk Usage", command=lambda: self._change_data("disk_usage"))
         disk_button.pack(side="left", padx=5)
 
-        network_button = ctk.CTkButton(button_frame, text="Network Usage",
+        network_button = ctk.CTkButton(buttons, text="Network Usage",
                                        command=lambda: self._change_data("network_usage"))
         network_button.pack(side="left", padx=5)
 
     def _change_data(self, data_type):
-        """Changes the data type for the graph and label"""
+        """Changes the data type for the graph and label accordingly the selected resource"""
         self.data_type = data_type
-        self.graph_data.clear()
+        self.graph_info.clear()
         self.data_label.configure(text=f"{data_type.replace('_', ' ').title()}: 0%")
         self.ax.set_title(data_type.replace('_', ' ').title())
         self.ax.set_ylabel("% Utilization" if data_type != "network_usage" else "Bytes")
 
-    def _setup_graph(self):
-        """Sets the graphs frame with the canvas"""
+    def _set_graph(self):
+        """Sets the graph frame for a resource statistics"""
         self.graph_frame = ctk.CTkFrame(self.root)
         self.graph_frame.pack(side="right", fill="both", expand=True, padx=10, pady=10)
 
-        style.use('fivethirtyeight')
+        style.use('seaborn-v0_8-pastel')
         self.fig, self.ax = plt.subplots()
         self.ax.set_title("CPU")
         self.ax.set_ylabel("% Utilization")
@@ -85,10 +84,10 @@ class App:
         if record:
             value = record[self.data_type] if self.data_type != "network_usage" else record["network_usage"][
                 "bytes_sent"]
-            self.graph_data.append(value)
+            self.graph_info.append(value)
 
             self.ax.clear()
-            self.ax.plot(self.graph_data, label=f"{self.data_type.replace('_', ' ').title()}")
+            self.ax.plot(self.graph_info, label=f"{self.data_type.replace('_', ' ').title()}")
             self.ax.legend()
             self.ax.set_title(self.data_type.replace('_', ' ').title())
             self.ax.set_ylabel("% Utilization" if self.data_type != "network_usage" else "Bytes")
@@ -96,7 +95,7 @@ class App:
 
             return self.fig, self.ax
 
-    def update_stats(self):
+    def update_statistics(self):
         """Updates monitor resources statistics"""
 
         cpu_usage = self.functions.get_cpu_usage()
@@ -128,7 +127,7 @@ class App:
                 text=f"Network Usage: Sent: {network_usage['bytes_sent']} B, "
                      f"Received: {network_usage['bytes_received']} B"
             )
-        self.root.after(1000, self.update_stats)
+        self.root.after(1000, self.update_statistics)
 
 
     def run(self):

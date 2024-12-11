@@ -25,7 +25,7 @@ class Functionalities:
     def get_disk_usage(self):
         """
         Gets the disk usage
-        :return: the disk usage
+        :return: the disk usage in percentage
         """
         disk_usage = psutil.disk_usage('/')
 

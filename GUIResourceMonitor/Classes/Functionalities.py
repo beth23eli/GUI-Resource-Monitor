@@ -42,6 +42,7 @@ class Functionalities:
             "bytes_sent": network.bytes_sent,
             "bytes_received": network.bytes_recv,
         }
+
     def get_resources_record(self, filename="resources_history.json"):
         try:
             with open(filename, 'r') as f:
@@ -49,3 +50,21 @@ class Functionalities:
                 return history[0] if history else None
         except (FileNotFoundError, json.JSONDecodeError):
             return None
+
+    def save_data(self, data, filename):
+        """Saves data to the json file
+
+        Args:
+            data (dict): data to save
+            :param filename: the path of the statistics file
+        """
+
+        try:
+            with open(filename, "r") as f:
+                history = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            history = []
+
+        history.insert(0, data)
+        with open(filename, 'w') as f:
+            json.dump(history, f, indent=4)

@@ -1,4 +1,3 @@
-import json
 import customtkinter as ctk
 import time
 import matplotlib.pyplot as plt
@@ -8,7 +7,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from GUIResourceMonitor.classes.Functionalities import Functionalities
 
 ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("blue")
+ctk.set_default_color_theme("dark-blue")
 
 class App:
     def __init__(self):
@@ -22,7 +21,9 @@ class App:
 
         self.stats_frame = None
         self.graph_frame = None
-        self.cpu_data = []
+        self.data_type = "cpu_usage"
+        self.data_label = None
+        self.graph_data = []
 
         self._show_data()
         self._setup_graph()
@@ -34,66 +35,34 @@ class App:
         self.stats_frame = ctk.CTkFrame(self.root)
         self.stats_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
+        self.data_label = ctk.CTkLabel(self.stats_frame, text="CPU Usage: 0%", font=("Arial", 16))
+        self.data_label.pack(pady=5)
+
         #etichete
-        self.cpu_label = ctk.CTkLabel(self.stats_frame, text="CPU Usage: 0%", font=("Arial", 16))
-        self.cpu_label.pack(pady=5)
+        button_frame = ctk.CTkFrame(self.root)
+        button_frame.pack(pady=10)
 
-        self.memory_label = ctk.CTkLabel(self.stats_frame, text="Memory Usage: 0%", font=("Arial", 16))
-        self.memory_label.pack(pady=5)
+        cpu_button = ctk.CTkButton(button_frame, text="CPU Usage", command=lambda: self._change_data("cpu_usage"))
+        cpu_button.pack(side="left", padx=5)
 
-        self.disk_label = ctk.CTkLabel(self.stats_frame, text="Disk Usage: 0%", font=("Arial", 16))
-        self.disk_label.pack(pady=5)
+        memory_button = ctk.CTkButton(button_frame, text="Memory Usage",
+                                      command=lambda: self._change_data("memory_usage"))
+        memory_button.pack(side="left", padx=5)
 
-        self.network_label = ctk.CTkLabel(self.stats_frame, text="Network Usage: Sent: 0 B, Received: 0 B",
-                                          font=("Arial", 16))
-        self.network_label.pack(pady=5)
+        disk_button = ctk.CTkButton(button_frame, text="Disk Usage", command=lambda: self._change_data("disk_usage"))
+        disk_button.pack(side="left", padx=5)
 
-    def update_stats(self):
-        """Updates monitor resources statistics"""
+        network_button = ctk.CTkButton(button_frame, text="Network Usage",
+                                       command=lambda: self._change_data("network_usage"))
+        network_button.pack(side="left", padx=5)
 
-        cpu_usage = self.functions.get_cpu_usage()
-        memory_usage = self.functions.get_memory_usage()
-        disk_usage = self.functions.get_disk_usage()
-        network_usage = self.functions.get_network_usage()
-        resources_time = time.ctime()
-
-        data = {
-            "timestamp": resources_time,
-            "cpu_usage": cpu_usage,
-            "memory_usage": memory_usage,
-            "disk_usage": disk_usage,
-            "network_usage": {
-                "bytes_sent": network_usage["bytes_sent"],
-                "bytes_received": network_usage["bytes_received"],
-            },
-        }
-        self.save_data(data)
-
-        self.cpu_label.configure(text=f"CPU Usage: {cpu_usage}%")
-        self.memory_label.configure(text=f"Memory Usage: {memory_usage}%")
-        self.disk_label.configure(text=f"Disk Usage: {disk_usage}%")
-        self.network_label.configure(
-            text=f"Network Usage: Sent: {network_usage['bytes_sent']} B, "
-                 f"Received: {network_usage['bytes_received']} B"
-        )
-        self.root.after(1000, self.update_stats)
-
-    def save_data(self, data):
-        """Saves data to the json file
-
-        Args:
-            data (dict): data to save
-        """
-
-        try:
-            with open(self.filename, "r") as f:
-                history = json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            history = []
-
-        history.insert(0, data)
-        with open(self.filename, 'w') as f:
-            json.dump(history, f, indent=4)
+    def _change_data(self, data_type):
+        """Changes the data type for the graph and label"""
+        self.data_type = data_type
+        self.graph_data.clear()
+        self.data_label.configure(text=f"{data_type.replace('_', ' ').title()}: 0%")
+        self.ax.set_title(data_type.replace('_', ' ').title())
+        self.ax.set_ylabel("% Utilization" if data_type != "network_usage" else "Bytes")
 
     def _setup_graph(self):
         """Sets the graphs frame with the canvas"""
@@ -114,19 +83,53 @@ class App:
         """Animates the graph by updating it live"""
         record = self.functions.get_resources_record(self.filename)
         if record:
-            cpu_usage = record["cpu_usage"]
+            value = record[self.data_type] if self.data_type != "network_usage" else record["network_usage"][
+                "bytes_sent"]
+            self.graph_data.append(value)
 
-            self.cpu_data.append(cpu_usage)
-
-            #update graph
             self.ax.clear()
-            line, = self.ax.plot(self.cpu_data, label="CPU Usage (%)")
+            self.ax.plot(self.graph_data, label=f"{self.data_type.replace('_', ' ').title()}")
             self.ax.legend()
-            self.ax.set_title("CPU")
-            self.ax.set_ylabel("% Utilization")
+            self.ax.set_title(self.data_type.replace('_', ' ').title())
+            self.ax.set_ylabel("% Utilization" if self.data_type != "network_usage" else "Bytes")
             self.fig.tight_layout()
 
-        return [line]
+            return self.fig, self.ax
+
+    def update_stats(self):
+        """Updates monitor resources statistics"""
+
+        cpu_usage = self.functions.get_cpu_usage()
+        memory_usage = self.functions.get_memory_usage()
+        disk_usage = self.functions.get_disk_usage()
+        network_usage = self.functions.get_network_usage()
+        resources_time = time.ctime()
+
+        data = {
+            "timestamp": resources_time,
+            "cpu_usage": cpu_usage,
+            "memory_usage": memory_usage,
+            "disk_usage": disk_usage,
+            "network_usage": {
+                "bytes_sent": network_usage["bytes_sent"],
+                "bytes_received": network_usage["bytes_received"],
+            },
+        }
+        self.functions.save_data(data, self.filename)
+
+        if self.data_type == "cpu_usage":
+            self.data_label.configure(text=f"CPU Usage: {cpu_usage}%")
+        elif self.data_type == "memory_usage":
+            self.data_label.configure(text=f"Memory Usage: {memory_usage}%")
+        elif self.data_type == "disk_usage":
+            self.data_label.configure(text=f"Disk Usage: {disk_usage}%")
+        elif self.data_type == "network_usage":
+            self.data_label.configure(
+                text=f"Network Usage: Sent: {network_usage['bytes_sent']} B, "
+                     f"Received: {network_usage['bytes_received']} B"
+            )
+        self.root.after(1000, self.update_stats)
+
 
     def run(self):
         """

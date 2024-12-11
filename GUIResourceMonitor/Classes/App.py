@@ -15,7 +15,7 @@ class App:
 
         self.root = ctk.CTk()
         self.root.title("GUI Resource Monitor")
-        self.root.geometry("1000x600")
+        self.root.geometry("800x700")
         self.filename = "resources_history.json"
         self.functions = Functionalities()
 
@@ -34,26 +34,26 @@ class App:
     def _show_data(self):
         """Displays monitor resources statistics"""
 
-        self.resource_stats_frame = ctk.CTkFrame(self.root)
+        self.resource_stats_frame = ctk.CTkFrame(self.root, fg_color="#c0d2fa")
         self.resource_stats_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
-        self.resource_label = ctk.CTkLabel(self.resource_stats_frame, text="CPU Usage: 0%", font=("Arial", 16))
+        self.resource_label = ctk.CTkLabel(self.resource_stats_frame, text="CPU Usage: 0%", font=("Arial", 16, "bold"))
         self.resource_label.pack(pady=5)
 
         buttons = ctk.CTkFrame(self.root)
         buttons.pack(pady=10)
 
-        cpu_button = ctk.CTkButton(buttons, text="CPU Usage", command=lambda: self._change_data("cpu_usage"))
+        cpu_button = ctk.CTkButton(buttons, text="CPU Usage", fg_color="#184ecc", command=lambda: self._change_data("cpu_usage"))
         cpu_button.pack(side="left", padx=5)
 
-        memory_button = ctk.CTkButton(buttons, text="Memory Usage",
+        memory_button = ctk.CTkButton(buttons, text="Memory Usage", fg_color="#184ecc",
                                       command=lambda: self._change_data("memory_usage"))
         memory_button.pack(side="left", padx=5)
 
-        disk_button = ctk.CTkButton(buttons, text="Disk Usage", command=lambda: self._change_data("disk_usage"))
+        disk_button = ctk.CTkButton(buttons, text="Disk Usage", fg_color="#184ecc", command=lambda: self._change_data("disk_usage"))
         disk_button.pack(side="left", padx=5)
 
-        network_button = ctk.CTkButton(buttons, text="Network Usage",
+        network_button = ctk.CTkButton(buttons, text="Network Usage", fg_color="#184ecc",
                                        command=lambda: self._change_data("network_usage"))
         network_button.pack(side="left", padx=5)
 
@@ -99,15 +99,22 @@ class App:
 
     def _set_statistics_history_area(self):
         """Sets the scrollable area for resources statistics history."""
-        self.history_frame = ctk.CTkScrollableFrame(self.root, width=400, height=400)
-        self.history_frame.pack(side="bottom", fill="x", padx=10, pady=10)
+        history_area = ctk.CTkFrame(self.root)
+        history_area.pack(side="bottom", fill="x", padx=10, pady=(10, 5))
 
-        update_button = ctk.CTkButton(self.root, text="CPU Usage", command=self._update_statistics_history_area())
+        title = ctk.CTkLabel(history_area, text="Resources Statistics History", font=("Arial", 16))
+        title.pack(pady=5)
+
+        self.statistics_history_frame = ctk.CTkScrollableFrame(history_area, width=600, height=600)
+        self.statistics_history_frame.pack(side="left", fill="x", padx=10, pady=(10, 5))
+
+        update_button = ctk.CTkButton(history_area, text="Update history", hover_color="#7440c2", command=self._update_statistics_history_area)
+        update_button.pack(side="right", padx=10, pady=20)
 
         self._update_statistics_history_area()
 
     def _update_statistics_history_area(self):
-        for old_content in self.history_frame.winfo_children():
+        for old_content in self.statistics_history_frame.winfo_children():
             old_content.destroy()
 
         statistics_history = self.functions.get_all_resources_statistics(self.filename)
@@ -119,6 +126,14 @@ class App:
             bytes_sent = stats_record.get("network_usage", {}).get("bytes_sent", "-")
             bytes_received = stats_record.get("network_usage", {}).get("bytes_received", "-")
 
+            label_text = (
+                f"Time: {record_time}\n"
+                f"CPU Usage: {cpu}% , Memory Usage: {memory}% , Disk Usage: {disk}%\n"
+                f"Network Usage -> Sent: {bytes_sent} Bytes , Received: {bytes_received} Bytes\n"
+                "**********************************************************************************"
+            )
+            label = ctk.CTkLabel(self.statistics_history_frame, text=label_text, anchor="w", justify="left", font=("Arial", 12))
+            label.pack(fill="x", padx=5, pady=2)
 
     def update_statistics(self):
         """Updates monitor resources statistics"""
@@ -149,11 +164,10 @@ class App:
             self.resource_label.configure(text=f"Disk Usage: {disk_usage}%")
         elif self.data_type == "network_usage":
             self.resource_label.configure(
-                text=f"Network Usage: Sent: {network_usage['bytes_sent']} B, "
-                     f"Received: {network_usage['bytes_received']} B"
+                text=f"Network Usage -> Sent: {network_usage['bytes_sent']} Bytes, "
+                     f"Received: {network_usage['bytes_received']} Bytes"
             )
         self.root.after(1000, self.update_statistics)
-
 
     def run(self):
         """

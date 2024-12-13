@@ -1,5 +1,855 @@
 [
     {
+        "timestamp": "Fri Dec 13 11:32:17 2024",
+        "cpu_usage": 3.5,
+        "memory_usage": 80.1,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652770992,
+            "bytes_received": 22227447406
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:15 2024",
+        "cpu_usage": 1.6,
+        "memory_usage": 80.1,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652763291,
+            "bytes_received": 22227409251
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:13 2024",
+        "cpu_usage": 2.1,
+        "memory_usage": 80.1,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652762644,
+            "bytes_received": 22227379921
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:11 2024",
+        "cpu_usage": 1.2,
+        "memory_usage": 80.1,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652762398,
+            "bytes_received": 22227341505
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:09 2024",
+        "cpu_usage": 1.6,
+        "memory_usage": 80.1,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652762234,
+            "bytes_received": 22227297373
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:07 2024",
+        "cpu_usage": 1.4,
+        "memory_usage": 80.0,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652761972,
+            "bytes_received": 22227249854
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:04 2024",
+        "cpu_usage": 2.7,
+        "memory_usage": 80.0,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652761407,
+            "bytes_received": 22227201990
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:32:02 2024",
+        "cpu_usage": 1.6,
+        "memory_usage": 79.9,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652761118,
+            "bytes_received": 22227153462
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:32 2024",
+        "cpu_usage": 15.2,
+        "memory_usage": 81.3,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652321782,
+            "bytes_received": 22221005304
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:30 2024",
+        "cpu_usage": 1.8,
+        "memory_usage": 81.4,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652308403,
+            "bytes_received": 22220944202
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:28 2024",
+        "cpu_usage": 2.7,
+        "memory_usage": 81.3,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652307894,
+            "bytes_received": 22220896322
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:26 2024",
+        "cpu_usage": 6.1,
+        "memory_usage": 81.4,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652307603,
+            "bytes_received": 22220849410
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:24 2024",
+        "cpu_usage": 2.9,
+        "memory_usage": 81.4,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652300213,
+            "bytes_received": 22220735819
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:22 2024",
+        "cpu_usage": 1.4,
+        "memory_usage": 81.4,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652295940,
+            "bytes_received": 22220579252
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:19 2024",
+        "cpu_usage": 1.0,
+        "memory_usage": 81.3,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652291223,
+            "bytes_received": 22220418581
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:27:17 2024",
+        "cpu_usage": 4.5,
+        "memory_usage": 81.2,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 652286894,
+            "bytes_received": 22220276660
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:18:41 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.6,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 650563078,
+            "bytes_received": 22185816686
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:18:39 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.6,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 650558896,
+            "bytes_received": 22185659726
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:18:37 2024",
+        "cpu_usage": 1.4,
+        "memory_usage": 81.6,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 650554657,
+            "bytes_received": 22185520456
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:18:35 2024",
+        "cpu_usage": 1.5,
+        "memory_usage": 81.6,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 650550861,
+            "bytes_received": 22185370505
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:18:32 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.6,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 650545993,
+            "bytes_received": 22185226435
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:18:30 2024",
+        "cpu_usage": 2.2,
+        "memory_usage": 81.5,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 650541412,
+            "bytes_received": 22185062572
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:48 2024",
+        "cpu_usage": 6.8,
+        "memory_usage": 81.0,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646372697,
+            "bytes_received": 22145740029
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:46 2024",
+        "cpu_usage": 2.1,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646364159,
+            "bytes_received": 22145699412
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:44 2024",
+        "cpu_usage": 2.1,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646363692,
+            "bytes_received": 22145658764
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:42 2024",
+        "cpu_usage": 1.2,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646363402,
+            "bytes_received": 22145614977
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:40 2024",
+        "cpu_usage": 2.5,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646362821,
+            "bytes_received": 22145567449
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:38 2024",
+        "cpu_usage": 2.5,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646362677,
+            "bytes_received": 22145523392
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:35 2024",
+        "cpu_usage": 1.7,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646361909,
+            "bytes_received": 22145474437
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:33 2024",
+        "cpu_usage": 5.4,
+        "memory_usage": 80.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646361710,
+            "bytes_received": 22145428934
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:31 2024",
+        "cpu_usage": 2.1,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646353812,
+            "bytes_received": 22145379977
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:29 2024",
+        "cpu_usage": 1.6,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646353287,
+            "bytes_received": 22145332471
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:27 2024",
+        "cpu_usage": 1.4,
+        "memory_usage": 81.0,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646353007,
+            "bytes_received": 22145285280
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:25 2024",
+        "cpu_usage": 2.1,
+        "memory_usage": 81.0,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646352459,
+            "bytes_received": 22145239819
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:23 2024",
+        "cpu_usage": 4.8,
+        "memory_usage": 81.0,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646349799,
+            "bytes_received": 22145196355
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:21 2024",
+        "cpu_usage": 1.8,
+        "memory_usage": 80.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646349085,
+            "bytes_received": 22145145302
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:09:19 2024",
+        "cpu_usage": 2.0,
+        "memory_usage": 80.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 646348801,
+            "bytes_received": 22145095563
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:56 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 80.4,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644163769,
+            "bytes_received": 22083238717
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:54 2024",
+        "cpu_usage": 1.8,
+        "memory_usage": 80.4,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644163231,
+            "bytes_received": 22083194581
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:52 2024",
+        "cpu_usage": 1.6,
+        "memory_usage": 81.3,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644162803,
+            "bytes_received": 22083147532
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:50 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.4,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644162431,
+            "bytes_received": 22083103280
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:48 2024",
+        "cpu_usage": 1.2,
+        "memory_usage": 81.3,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644154793,
+            "bytes_received": 22083048751
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:46 2024",
+        "cpu_usage": 1.2,
+        "memory_usage": 81.3,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644154465,
+            "bytes_received": 22083001601
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:44 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.5,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644154229,
+            "bytes_received": 22082953747
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:42 2024",
+        "cpu_usage": 9.1,
+        "memory_usage": 81.5,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644153752,
+            "bytes_received": 22082909116
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:40 2024",
+        "cpu_usage": 1.8,
+        "memory_usage": 81.4,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644153538,
+            "bytes_received": 22082869967
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:37 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.5,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644147049,
+            "bytes_received": 22082662719
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 11:03:35 2024",
+        "cpu_usage": 2.9,
+        "memory_usage": 81.5,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 644142837,
+            "bytes_received": 22082293155
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:51 2024",
+        "cpu_usage": 2.0,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642997962,
+            "bytes_received": 22048930730
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:49 2024",
+        "cpu_usage": 4.2,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642997457,
+            "bytes_received": 22048883233
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:47 2024",
+        "cpu_usage": 1.7,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642989182,
+            "bytes_received": 22048821499
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:45 2024",
+        "cpu_usage": 1.2,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642987954,
+            "bytes_received": 22048773186
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:43 2024",
+        "cpu_usage": 2.9,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642987715,
+            "bytes_received": 22048729734
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:41 2024",
+        "cpu_usage": 9.9,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642987238,
+            "bytes_received": 22048682979
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:39 2024",
+        "cpu_usage": 0.8,
+        "memory_usage": 81.9,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642987042,
+            "bytes_received": 22048642856
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:36 2024",
+        "cpu_usage": 2.1,
+        "memory_usage": 81.7,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642986550,
+            "bytes_received": 22048583846
+        }
+    },
+    {
+        "timestamp": "Fri Dec 13 10:55:34 2024",
+        "cpu_usage": 1.9,
+        "memory_usage": 81.6,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 642986144,
+            "bytes_received": 22048545626
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:50 2024",
+        "cpu_usage": 18.1,
+        "memory_usage": 57.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 596514106,
+            "bytes_received": 20723353336
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:48 2024",
+        "cpu_usage": 41.7,
+        "memory_usage": 56.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 594063509,
+            "bytes_received": 20723235706
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:46 2024",
+        "cpu_usage": 38.7,
+        "memory_usage": 56.6,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 592982156,
+            "bytes_received": 20723130407
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:43 2024",
+        "cpu_usage": 14.1,
+        "memory_usage": 55.3,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 591795747,
+            "bytes_received": 20722815506
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:41 2024",
+        "cpu_usage": 49.1,
+        "memory_usage": 54.6,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 589507668,
+            "bytes_received": 20722605406
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:39 2024",
+        "cpu_usage": 89.5,
+        "memory_usage": 54.1,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586704932,
+            "bytes_received": 20722521556
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:37 2024",
+        "cpu_usage": 44.7,
+        "memory_usage": 53.0,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586700728,
+            "bytes_received": 20722506963
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:35 2024",
+        "cpu_usage": 62.8,
+        "memory_usage": 51.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586693616,
+            "bytes_received": 20722493227
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:33 2024",
+        "cpu_usage": 81.0,
+        "memory_usage": 51.4,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586673166,
+            "bytes_received": 20722423949
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:31 2024",
+        "cpu_usage": 34.2,
+        "memory_usage": 54.0,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 586596684,
+            "bytes_received": 20720851859
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:29 2024",
+        "cpu_usage": 46.0,
+        "memory_usage": 52.8,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 586581165,
+            "bytes_received": 20720809522
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:27 2024",
+        "cpu_usage": 24.4,
+        "memory_usage": 51.7,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 586572922,
+            "bytes_received": 20720788765
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:24 2024",
+        "cpu_usage": 28.7,
+        "memory_usage": 52.1,
+        "disk_usage": 86.7,
+        "network_usage": {
+            "bytes_sent": 586562661,
+            "bytes_received": 20720772914
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:22 2024",
+        "cpu_usage": 38.5,
+        "memory_usage": 49.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586554225,
+            "bytes_received": 20720762972
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:20 2024",
+        "cpu_usage": 11.3,
+        "memory_usage": 48.5,
+        "disk_usage": 86.5,
+        "network_usage": {
+            "bytes_sent": 586539825,
+            "bytes_received": 20720752488
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:18 2024",
+        "cpu_usage": 11.1,
+        "memory_usage": 48.2,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586526366,
+            "bytes_received": 20720731318
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:16 2024",
+        "cpu_usage": 6.8,
+        "memory_usage": 53.0,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586517153,
+            "bytes_received": 20720719727
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:14 2024",
+        "cpu_usage": 4.3,
+        "memory_usage": 52.6,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586406266,
+            "bytes_received": 20690650310
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:11 2024",
+        "cpu_usage": 7.6,
+        "memory_usage": 52.1,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586329207,
+            "bytes_received": 20672366620
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:40:01 2024",
+        "cpu_usage": 100.0,
+        "memory_usage": 49.1,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 586159286,
+            "bytes_received": 20669542459
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:59 2024",
+        "cpu_usage": 66.7,
+        "memory_usage": 49.1,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 585247378,
+            "bytes_received": 20669510784
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:57 2024",
+        "cpu_usage": 14.3,
+        "memory_usage": 47.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 585019932,
+            "bytes_received": 20669484233
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:55 2024",
+        "cpu_usage": 10.0,
+        "memory_usage": 45.1,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 584987497,
+            "bytes_received": 20669313344
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:53 2024",
+        "cpu_usage": 5.8,
+        "memory_usage": 44.7,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 584968988,
+            "bytes_received": 20669277050
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:51 2024",
+        "cpu_usage": 7.0,
+        "memory_usage": 44.1,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 584962717,
+            "bytes_received": 20669231242
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:49 2024",
+        "cpu_usage": 4.5,
+        "memory_usage": 43.3,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 584903563,
+            "bytes_received": 20669087471
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:47 2024",
+        "cpu_usage": 8.9,
+        "memory_usage": 42.8,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 584856958,
+            "bytes_received": 20668924078
+        }
+    },
+    {
+        "timestamp": "Thu Dec 12 19:39:44 2024",
+        "cpu_usage": 9.6,
+        "memory_usage": 42.3,
+        "disk_usage": 86.6,
+        "network_usage": {
+            "bytes_sent": 584853928,
+            "bytes_received": 20668910781
+        }
+    },
+    {
         "timestamp": "Wed Dec 11 21:59:02 2024",
         "cpu_usage": 4.7,
         "memory_usage": 78.2,

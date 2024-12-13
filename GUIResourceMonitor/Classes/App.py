@@ -1,3 +1,5 @@
+import os
+
 import customtkinter as ctk
 import time
 import matplotlib.pyplot as plt
@@ -8,6 +10,7 @@ from GUIResourceMonitor.classes.Functionalities import Functionalities
 
 ctk.set_appearance_mode("System")
 ctk.set_default_color_theme("dark-blue")
+
 
 class App:
     def __init__(self):
@@ -70,6 +73,15 @@ class App:
         self.graph_frame = ctk.CTkFrame(self.root)
         self.graph_frame.pack(side="top", fill="both", expand=True, padx=10, pady=10)
 
+        self.download_plot_ways = ctk.CTkOptionMenu(
+            self.graph_frame,
+            values=["jpeg", "pdf"],
+            command=self._download_graph,
+            height=10
+        )
+        self.download_plot_ways.set("Download plot")
+        self.download_plot_ways.pack(side="right", pady=20)
+
         style.use('seaborn-v0_8-pastel')
         self.fig, self.ax = plt.subplots()
         self.ax.set_title("CPU")
@@ -79,6 +91,19 @@ class App:
         self.canvas.get_tk_widget().pack(fill="both", expand=True)
 
         self.ani = FuncAnimation(self.fig, func=self._animate, interval=1000, cache_frame_data=False)
+
+    def _download_graph(self, option):
+        """
+        Downloads the graph with the chosen extension
+        :param option: the chosen extension
+        """
+        d_path = os.path.join(os.path.expanduser("~"), "Downloads")
+
+        if option == "jpeg":
+            plt.savefig(os.path.join(d_path, "resources.jpeg"))
+        else:
+            plt.savefig(os.path.join(d_path, "resources.jpeg"))
+
 
     def _animate(self, i):
         """Animates the graph by updating it live"""

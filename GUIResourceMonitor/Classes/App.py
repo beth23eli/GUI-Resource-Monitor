@@ -1,5 +1,4 @@
 import os
-
 import customtkinter as ctk
 import time
 import matplotlib.pyplot as plt
@@ -18,7 +17,9 @@ class App:
 
         self.root = ctk.CTk()
         self.root.title("GUI Resource Monitor")
-        self.root.geometry("800x700")
+        s_height = self.root.winfo_screenheight()
+        self.root.geometry(f"800x{s_height}")
+
         self.filename = "resources_history.json"
         self.functions = Functionalities()
 
@@ -80,7 +81,7 @@ class App:
             height=10
         )
         self.download_plot_ways.set("Download plot")
-        self.download_plot_ways.pack(side="right", pady=20)
+        self.download_plot_ways.pack(side="bottom", pady=20)
 
         style.use('seaborn-v0_8-pastel')
         self.fig, self.ax = plt.subplots()
@@ -103,7 +104,6 @@ class App:
             plt.savefig(os.path.join(d_path, "resources.jpeg"))
         else:
             plt.savefig(os.path.join(d_path, "resources.jpeg"))
-
 
     def _animate(self, i):
         """Animates the graph by updating it live"""
@@ -130,7 +130,7 @@ class App:
         title = ctk.CTkLabel(history_area, text="Resources Statistics History", font=("Arial", 16))
         title.pack(pady=5)
 
-        self.statistics_history_frame = ctk.CTkScrollableFrame(history_area, width=600, height=600)
+        self.statistics_history_frame = ctk.CTkScrollableFrame(history_area, width=580, height=600)
         self.statistics_history_frame.pack(side="left", fill="x", padx=10, pady=(10, 5))
 
         update_button = ctk.CTkButton(history_area, text="Update history", hover_color="#7440c2", command=self._update_statistics_history_area)

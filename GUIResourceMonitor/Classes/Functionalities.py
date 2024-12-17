@@ -1,4 +1,6 @@
 import json
+import os
+
 import psutil
 
 
@@ -73,6 +75,24 @@ class Functionalities:
         history.insert(0, data)
         with open(filename, 'w') as f:
             json.dump(history, f, indent=4)
+
+    def clean_history(self, filename):
+        """
+        Cleans the file with resource statistics
+        :param filename: the path of the statistics history file
+        """
+        try:
+            with open(filename, "r+") as f:
+                f.truncate()
+        except (FileNotFoundError, PermissionError) as e:
+            print(e)
+
+    def open_history(self, filename):
+        """
+        Opens the file to view it
+        :param filename: the path of the statistics history file
+        """
+        os.startfile(filename)
 
     def get_all_resources_statistics(self, filename):
         """

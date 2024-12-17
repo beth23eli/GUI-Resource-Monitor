@@ -17,8 +17,7 @@ class App:
 
         self.root = ctk.CTk()
         self.root.title("GUI Resource Monitor")
-        s_height = self.root.winfo_screenheight()
-        self.root.geometry(f"800x{s_height}")
+        self.root.geometry(f"800x{self.root.winfo_screenheight()}")
 
         self.filename = "resources_history.json"
         self.functions = Functionalities()
@@ -91,7 +90,7 @@ class App:
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.graph_frame)
         self.canvas.get_tk_widget().pack(fill="both", expand=True)
 
-        self.ani = FuncAnimation(self.fig, func=self._animate, interval=1000, cache_frame_data=False)
+        self.ani = FuncAnimation(self.fig, func=self._animate_graph, interval=1000, cache_frame_data=False)
 
     def _download_graph(self, option):
         """
@@ -105,7 +104,7 @@ class App:
         else:
             plt.savefig(os.path.join(d_path, "resources.jpeg"))
 
-    def _animate(self, i):
+    def _animate_graph(self, i):
         """Animates the graph by updating it live"""
         record = self.functions.get_most_recent_resources_statistics(self.filename)
         if record:
@@ -124,6 +123,7 @@ class App:
 
     def _set_statistics_history_area(self):
         """Sets the scrollable area for resources statistics history."""
+
         history_area = ctk.CTkFrame(self.root)
         history_area.pack(side="bottom", fill="x", padx=10, pady=(10, 5))
 
@@ -132,11 +132,19 @@ class App:
 
         self.statistics_history_frame = ctk.CTkScrollableFrame(history_area, width=580, height=600)
         self.statistics_history_frame.pack(side="left", fill="x", padx=10, pady=(10, 5))
-
-        update_button = ctk.CTkButton(history_area, text="Update history", hover_color="#7440c2", command=self._update_statistics_history_area)
-        update_button.pack(side="right", padx=10, pady=20)
-
         self._update_statistics_history_area()
+
+        buttons = ctk.CTkFrame(history_area)
+        buttons.pack(side="right" ,pady=10)
+
+        update_history_btn = ctk.CTkButton(buttons, text="Update history", hover_color="#7440c2", command=self._update_statistics_history_area)
+        update_history_btn.pack(side="top", padx=5, pady=5)
+        clean_history_btn = ctk.CTkButton(buttons, text="Clean history", hover_color="#7440c2",
+                                      command=lambda: {self.functions.clean_history(self.filename), self._update_statistics_history_area()})
+        clean_history_btn.pack(side="bottom", padx=5, pady=5)
+        open_history_btn = ctk.CTkButton(buttons, text="Open history", hover_color="#7440c2",
+                                          command=lambda: self.functions.open_history(self.filename))
+        open_history_btn.pack(side="bottom", padx=5, pady=5)
 
     def _update_statistics_history_area(self):
         for old_content in self.statistics_history_frame.winfo_children():
@@ -151,13 +159,13 @@ class App:
             bytes_sent = stats_record.get("network_usage", {}).get("bytes_sent", "-")
             bytes_received = stats_record.get("network_usage", {}).get("bytes_received", "-")
 
-            label_text = (
+            history_record = (
                 f"Time: {record_time}\n"
                 f"CPU Usage: {cpu}% , Memory Usage: {memory}% , Disk Usage: {disk}%\n"
-                f"Network Usage -> Sent: {bytes_sent} Bytes , Received: {bytes_received} Bytes\n"
-                "**********************************************************************************"
+                f"Network Usage => Sent: {bytes_sent} Bytes , Received: {bytes_received} Bytes\n"
+                "                                                                               "
             )
-            label = ctk.CTkLabel(self.statistics_history_frame, text=label_text, anchor="w", justify="left", font=("Arial", 12))
+            label = ctk.CTkLabel(self.statistics_history_frame, text=history_record, anchor="w", justify="left", font=("Arial", 12))
             label.pack(fill="x", padx=5, pady=2)
 
     def update_statistics(self):

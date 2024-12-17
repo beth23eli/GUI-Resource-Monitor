@@ -32,7 +32,7 @@ class App:
         self._show_data()
         self._set_graph()
         self._set_statistics_history_area()
-        self.update_statistics()
+        self.update_statistics_file()
 
     def _show_data(self):
         """Displays monitor resources statistics"""
@@ -46,17 +46,19 @@ class App:
         buttons = ctk.CTkFrame(self.root)
         buttons.pack(pady=10)
 
-        cpu_button = ctk.CTkButton(buttons, text="CPU Usage", fg_color="#184ecc", command=lambda: self._change_data("cpu_usage"))
+        cpu_button = ctk.CTkButton(buttons, text="CPU Usage", fg_color="#184ecc", font=("Arial", 13, "bold"),
+                                   command=lambda: self._change_data("cpu_usage"))
         cpu_button.pack(side="left", padx=5)
 
-        memory_button = ctk.CTkButton(buttons, text="Memory Usage", fg_color="#184ecc",
+        memory_button = ctk.CTkButton(buttons, text="Memory Usage", fg_color="#184ecc", font=("Arial", 13, "bold"),
                                       command=lambda: self._change_data("memory_usage"))
         memory_button.pack(side="left", padx=5)
 
-        disk_button = ctk.CTkButton(buttons, text="Disk Usage", fg_color="#184ecc", command=lambda: self._change_data("disk_usage"))
+        disk_button = ctk.CTkButton(buttons, text="Disk Usage", fg_color="#184ecc", font=("Arial", 13, "bold"),
+                                    command=lambda: self._change_data("disk_usage"))
         disk_button.pack(side="left", padx=5)
 
-        network_button = ctk.CTkButton(buttons, text="Network Usage", fg_color="#184ecc",
+        network_button = ctk.CTkButton(buttons, text="Network Usage", fg_color="#184ecc", font=("Arial", 13, "bold"),
                                        command=lambda: self._change_data("network_usage"))
         network_button.pack(side="left", padx=5)
 
@@ -76,7 +78,7 @@ class App:
         self.download_plot_ways = ctk.CTkOptionMenu(
             self.graph_frame,
             values=["jpeg", "pdf"],
-            command=self._download_graph,
+            command=self.download_graph,
             height=10
         )
         self.download_plot_ways.set("Download plot")
@@ -92,24 +94,12 @@ class App:
 
         self.ani = FuncAnimation(self.fig, func=self._animate_graph, interval=1000, cache_frame_data=False)
 
-    def _download_graph(self, option):
-        """
-        Downloads the graph with the chosen extension
-        :param option: the chosen extension
-        """
-        d_path = os.path.join(os.path.expanduser("~"), "Downloads")
-
-        if option == "jpeg":
-            plt.savefig(os.path.join(d_path, "resources.jpeg"))
-        else:
-            plt.savefig(os.path.join(d_path, "resources.jpeg"))
-
     def _animate_graph(self, i):
         """Animates the graph by updating it live"""
         record = self.functions.get_most_recent_resources_statistics(self.filename)
         if record:
             value = record[self.data_type] if self.data_type != "network_usage" else record["network_usage"][
-                "bytes_sent"]
+                "bytes_received"]
             self.graph_info.append(value)
 
             self.ax.clear()
@@ -120,6 +110,18 @@ class App:
             self.fig.tight_layout()
 
             return self.fig, self.ax
+
+    def download_graph(self, option):
+        """
+        Downloads the graph with the chosen extension
+        :param option: the chosen extension
+        """
+        d_path = os.path.join(os.path.expanduser("~"), "Downloads")
+
+        if option == "jpeg":
+            plt.savefig(os.path.join(d_path, "resources.jpeg"))
+        else:
+            plt.savefig(os.path.join(d_path, "resources.jpeg"))
 
     def _set_statistics_history_area(self):
         """Sets the scrollable area for resources statistics history."""
@@ -147,6 +149,9 @@ class App:
         open_history_btn.pack(side="bottom", padx=5, pady=5)
 
     def _update_statistics_history_area(self):
+        """
+        Updates the statistics history area with the actual content at the moment from the json file
+        """
         for old_content in self.statistics_history_frame.winfo_children():
             old_content.destroy()
 
@@ -168,7 +173,7 @@ class App:
             label = ctk.CTkLabel(self.statistics_history_frame, text=history_record, anchor="w", justify="left", font=("Arial", 12))
             label.pack(fill="x", padx=5, pady=2)
 
-    def update_statistics(self):
+    def update_statistics_file(self):
         """Updates monitor resources statistics"""
 
         cpu_usage = self.functions.get_cpu_usage()
@@ -200,7 +205,7 @@ class App:
                 text=f"Network Usage -> Sent: {network_usage['bytes_sent']} Bytes, "
                      f"Received: {network_usage['bytes_received']} Bytes"
             )
-        self.root.after(1000, self.update_statistics)
+        self.root.after(1000, self.update_statistics_file)
 
     def run(self):
         """

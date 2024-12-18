@@ -30,9 +30,9 @@ class App:
         self.graph_info = []
 
         self._show_data()
+        self.update_statistics_info()
         self._set_graph()
         self._set_statistics_history_area()
-        self.update_statistics_file()
 
     def _show_data(self):
         """Displays monitor resources statistics"""
@@ -70,6 +70,40 @@ class App:
         self.ax.set_title(data_type.replace('_', ' ').title())
         self.ax.set_ylabel("% Utilization" if data_type != "network_usage" else "Bytes")
 
+    def update_statistics_info(self):
+        """Updates monitor resources statistics"""
+
+        cpu_usage = self.functions.get_cpu_usage()
+        memory_usage = self.functions.get_memory_usage()
+        disk_usage = self.functions.get_disk_usage()
+        network_usage = self.functions.get_network_usage()
+        resources_time = time.ctime()
+
+        data = {
+            "timestamp": resources_time,
+            "cpu_usage": cpu_usage,
+            "memory_usage": memory_usage,
+            "disk_usage": disk_usage,
+            "network_usage": {
+                "bytes_sent": network_usage["bytes_sent"],
+                "bytes_received": network_usage["bytes_received"],
+            },
+        }
+        self.functions.save_data(data, self.filename)
+
+        if self.data_type == "cpu_usage":
+            self.resource_label.configure(text=f"CPU Usage: {cpu_usage}%")
+        elif self.data_type == "memory_usage":
+            self.resource_label.configure(text=f"Memory Usage: {memory_usage}%")
+        elif self.data_type == "disk_usage":
+            self.resource_label.configure(text=f"Disk Usage: {disk_usage}%")
+        elif self.data_type == "network_usage":
+            self.resource_label.configure(
+                text=f"Network Usage -> Sent: {network_usage['bytes_sent']} Bytes, "
+                     f"Received: {network_usage['bytes_received']} Bytes"
+            )
+        self.root.after(1000, self.update_statistics_info)
+
     def _set_graph(self):
         """Sets the graph frame for a resource statistics"""
         self.graph_frame = ctk.CTkFrame(self.root)
@@ -79,7 +113,7 @@ class App:
             self.graph_frame,
             values=["jpeg", "pdf"],
             command=self.download_graph,
-            height=10
+            height=14
         )
         self.download_plot_ways.set("Download plot")
         self.download_plot_ways.pack(side="bottom", pady=20)
@@ -121,10 +155,10 @@ class App:
         if option == "jpeg":
             plt.savefig(os.path.join(d_path, "resources.jpeg"))
         else:
-            plt.savefig(os.path.join(d_path, "resources.jpeg"))
+            plt.savefig(os.path.join(d_path, "resources.pdf"))
 
     def _set_statistics_history_area(self):
-        """Sets the scrollable area for resources statistics history."""
+        """Sets the area for resources statistics history."""
 
         history_area = ctk.CTkFrame(self.root)
         history_area.pack(side="bottom", fill="x", padx=10, pady=(10, 5))
@@ -172,40 +206,6 @@ class App:
             )
             label = ctk.CTkLabel(self.statistics_history_frame, text=history_record, anchor="w", justify="left", font=("Arial", 12))
             label.pack(fill="x", padx=5, pady=2)
-
-    def update_statistics_file(self):
-        """Updates monitor resources statistics"""
-
-        cpu_usage = self.functions.get_cpu_usage()
-        memory_usage = self.functions.get_memory_usage()
-        disk_usage = self.functions.get_disk_usage()
-        network_usage = self.functions.get_network_usage()
-        resources_time = time.ctime()
-
-        data = {
-            "timestamp": resources_time,
-            "cpu_usage": cpu_usage,
-            "memory_usage": memory_usage,
-            "disk_usage": disk_usage,
-            "network_usage": {
-                "bytes_sent": network_usage["bytes_sent"],
-                "bytes_received": network_usage["bytes_received"],
-            },
-        }
-        self.functions.save_data(data, self.filename)
-
-        if self.data_type == "cpu_usage":
-            self.resource_label.configure(text=f"CPU Usage: {cpu_usage}%")
-        elif self.data_type == "memory_usage":
-            self.resource_label.configure(text=f"Memory Usage: {memory_usage}%")
-        elif self.data_type == "disk_usage":
-            self.resource_label.configure(text=f"Disk Usage: {disk_usage}%")
-        elif self.data_type == "network_usage":
-            self.resource_label.configure(
-                text=f"Network Usage -> Sent: {network_usage['bytes_sent']} Bytes, "
-                     f"Received: {network_usage['bytes_received']} Bytes"
-            )
-        self.root.after(1000, self.update_statistics_file)
 
     def run(self):
         """

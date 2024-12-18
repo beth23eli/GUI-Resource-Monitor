@@ -46,7 +46,7 @@ class Functionalities:
 
     def get_most_recent_resources_statistics(self, filename):
         """
-        Gets the most recent resource statistics
+        Gets the most recent resource statistic to use it for the change in the graph
         :param filename: the path of the statistics file
         :return: the first record of the statistics file
         """
@@ -95,7 +95,7 @@ class Functionalities:
 
     def get_all_resources_statistics(self, filename):
         """
-        Gets all the resources statistics from the json file
+        Gets all the resources statistics from the json file for the history area
         :param filename: the path of the statistics file
         :return: the statistics data
         """
